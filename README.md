@@ -4,6 +4,7 @@ Quickly resize an image from either a URL or file to Android compatible mipmap d
 ### Usage
 ```
 source venv/bin/activate
+pip install -r requirements.txt
 ```
 
 Then to use the script, you can either grab an image from a URL:
