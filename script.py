@@ -40,17 +40,22 @@ try:
     if not os.path.exists('res/'):
         os.makedirs('res/')
 
-    sizes = ['mipmap-mdpi/', 'mipmap-hdpi/',
-             'mipmap-xhdpi/', 'mipmap-xxhdpi/', 'mipmap-xxxhdpi/']
+    sizes = {
+                48: 'mipmap-mdpi/',
+                72: 'mipmap-hdpi/',
+                96: 'mipmap-xhdpi/',
+                144: 'mipmap-xxhdpi/',
+                192: 'mipmap-xxxhdpi/'
+            }
 
-    for size in sizes:
-        basewidth = 48
+    for pixels, path in sizes.iteritems():
+        basewidth = pixels
         wpercent = (basewidth / float(image.size[0]))
-        hsize = int((float(image.size[1]) * float(wpercent)))
-        new_img = image.resize((basewidth, hsize), Image.ANTIALIAS)
-        if not os.path.exists(res + size):
-            os.makedirs(res + size)
-        new_img.save(res + size + 'ic_launcher.png')
+        hpath = int((float(image.size[1]) * float(wpercent)))
+        new_img = image.resize((basewidth, hpath), Image.ANTIALIAS)
+        if not os.path.exists(res + path):
+            os.makedirs(res + path)
+        new_img.save(res + path + 'ic_launcher.png')
 
 except IOError:
     print 'Images could not all be generated. Please check the image source and destination permissions.'
